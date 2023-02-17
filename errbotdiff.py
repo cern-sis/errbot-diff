@@ -1,9 +1,9 @@
 from errbot import BotPlugin, arg_botcmd, botcmd, webhook
 
 
-class Errbot-diff(BotPlugin):
+class Errbotdiff(BotPlugin):
     """
-    Errbot plugin to display diff between two namespaces
+    git diff
     """
 
     def activate(self):
@@ -12,7 +12,7 @@ class Errbot-diff(BotPlugin):
 
         You should delete it if you're not using it to override any default behaviour
         """
-        super(Errbot-diff, self).activate()
+        super(Errbotdiff, self).activate()
 
     def deactivate(self):
         """
@@ -20,7 +20,7 @@ class Errbot-diff(BotPlugin):
 
         You should delete it if you're not using it to override any default behaviour
         """
-        super(Errbot-diff, self).deactivate()
+        super(Errbotdiff, self).deactivate()
 
     def get_configuration_template(self):
         """
@@ -41,7 +41,7 @@ class Errbot-diff(BotPlugin):
 
         You should delete it if you're not using it to override any default behaviour
         """
-        super(Errbot-diff, self).check_configuration(configuration)
+        super(Errbotdiff, self).check_configuration(configuration)
 
     def callback_connect(self):
         """
@@ -67,8 +67,6 @@ class Errbot-diff(BotPlugin):
         """
         pass
 
-    # Passing split_args_with=None will cause arguments to be split on any kind
-    # of whitespace, just like Python's split() does
     @botcmd
     def diff(self, message, args):
         # first - clone the repo
