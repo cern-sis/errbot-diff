@@ -1,0 +1,10 @@
+[Core]
+name = errbot-diff
+module = errbot-diff
+
+[Documentation]
+description = Errbot plugin to display diff between two namespaces
+
+[Python]
+version = 3
+
