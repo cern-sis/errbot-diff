@@ -6,7 +6,7 @@ class Errbotdiff(BotPlugin):
     @botcmd
     def diff(self, message, args):
         gh_pat = os.environ["GITHUB_PAT"]
-        repo_url = "https://"+gh_pat+"@github.com/cern-sis/kubernetes.git"
+        repo_url = f"https://{gh_pat}@github.com/cern-sis/kubernetes.git"
         remote_branch_1 = "origin/master_output"
         remote_branch_2 = "origin/"+args
         directory=args
