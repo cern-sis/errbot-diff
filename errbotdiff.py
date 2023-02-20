@@ -1,4 +1,5 @@
-from errbot import BotPlugin, arg_botcmd, botcmd, webhook
+from errbot import BotPlugin, arg_botcmd, botcmd
+import subprocess
 
 
 class Errbotdiff(BotPlugin):
