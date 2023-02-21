@@ -24,6 +24,7 @@ class Errbotdiff(BotPlugin):
             cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", file_path]
             result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
             filename, ext = os.path.splitext(os.path.basename(file_path))
-            yield f"kind: {filename}: "
+            text = filename.split(".")
+            yield f"{text[0]}: {text[1]}: "
             yield tenv().get_template('diff.md').render(diff=result.stdout)
 
