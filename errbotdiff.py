@@ -20,5 +20,5 @@ class Errbotdiff(BotPlugin):
         diffs = result.stdout.splitlines()
 
         for diff in diffs:
-            yeild tenv().get_template('diff.md').render(diff=args)
+            yield tenv().get_template('diff.md').render(diff=args)
 
