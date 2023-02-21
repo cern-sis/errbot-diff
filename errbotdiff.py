@@ -23,7 +23,7 @@ class Errbotdiff(BotPlugin):
         diffs = []
         for file_path in changed_files:
             cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", file_path]
-            result = subprocess.run(cmd, cwd=local_repo_path, capture_output=True, text=True)
+            result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
             diffs.append(result.stdout.splitlines())
 
         for i in range(len(changed_files)):
