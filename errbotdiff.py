@@ -12,8 +12,8 @@ class Errbotdiff(BotPlugin):
         directory=args
         local_path = "kubernetes"
 
-       subprocess.run(["git", "clone", repo_url, local_path])
-       subprocess.run(["git", "fetch", "origin"], cwd=local_path)
+        subprocess.run(["git", "clone", repo_url, local_path])
+        subprocess.run(["git", "fetch", "origin"], cwd=local_path)
         cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", directory]
         result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
 
