@@ -25,6 +25,5 @@ class Errbotdiff(BotPlugin):
             result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
             filename, ext = os.path.splitext(os.path.basename(file_path))
             text = filename.split(".")
-            yield f"{text[0]}: {text[1]}: "
-            yield tenv().get_template('diff.md').render(diff=result.stdout)
+            yield tenv().get_template('diff.md').render(app=text[0], resource=text[1], filepath=file_path, diff=result.stdout)
 
