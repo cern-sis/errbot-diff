@@ -16,6 +16,9 @@ class Errbotdiff(BotPlugin):
         subprocess.run(["git", "fetch", "origin"], cwd=local_path)
         cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", directory]
         result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
+        
+        diffs = result.stdout.splitlines()
 
-        return {'diff': result.stdout}
+        for diff in diffs:
+            yeild tenv().get_template('diff.md').render(diff=args)
 
