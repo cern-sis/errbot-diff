@@ -15,11 +15,19 @@ class Errbotdiff(BotPlugin):
 
         subprocess.run(["git", "clone", repo_url, local_path])
         subprocess.run(["git", "fetch", "origin"], cwd=local_path)
-        cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", directory]
+        cmd = ["git", "diff", "--name-only", f"{remote_branch_1}..{remote_branch_2}", "--", directory]
         result = subprocess.run(cmd, cwd=local_path, capture_output=True, text=True)
         
-        diffs = result.stdout.splitlines()
+        changed_files = result.stdout.splitlines()
 
-        for diff in diffs:
-            yield tenv().get_template('diff.md').render(diff=args)
+        diffs = []
+        for file_path in changed_files:
+            cmd = ["git", "diff", f"{remote_branch_1}..{remote_branch_2}", "--", file_path]
+            result = subprocess.run(cmd, cwd=local_repo_path, capture_output=True, text=True)
+            diffs.append(result.stdout.splitlines())
+
+        for i in range(len(changed_files)):
+            yield f"Diff for {changed_files[i]}:"
+            for diff in diffs[i]:
+               yield tenv().get_template('diff.md').render(diff=diff)
 
