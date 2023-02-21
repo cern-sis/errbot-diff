@@ -1,4 +1,5 @@
 from errbot import BotPlugin, botcmd
+from errbot.templating inport tenv
 import subprocess
 import os
 
