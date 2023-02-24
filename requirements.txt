@@ -1,0 +1,3 @@
+fastcore==1.5.28
+ghapi==1.0.3
+packaging==23.0
