@@ -4,7 +4,7 @@ from errbot import BotPlugin, arg_botcmd
 from ghapi.all import GhApi
 
 
-class Errbotdiff(BotPlugin):
+class Diff(BotPlugin):
     @arg_botcmd(
         "branch",
         help="The branch to diff.",
@@ -21,10 +21,11 @@ class Errbotdiff(BotPlugin):
             basehead=f"{branch}...master_output",
         )
 
-        files = filter(lambda x: self.is_in_namespace(branch, x), response.files)
-
-        for f in files:
-            yield {"file": f}
+        files = [f for f in response.files if self.is_in_namespace(branch, f)]
+        if files:
+            return {"files": files}
+        else:
+            return f":green: **{branch}** is up to date."
 
     @staticmethod
     def is_in_namespace(branch, file):

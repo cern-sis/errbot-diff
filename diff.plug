@@ -1,0 +1,10 @@
+[Core]
+name = diff
+module = diff
+
+[Documentation]
+description = Display the changes to be deployed
+
+[Python]
+version = 3
+
